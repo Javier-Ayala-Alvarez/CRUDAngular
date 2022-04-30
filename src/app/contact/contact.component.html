@@ -1,0 +1,62 @@
+<!--Estructura de el formulario-->
+<!--Aca llamamos al componente de contact-->
+
+<div class="container mt-4 bg-light">
+    <div class="row ">
+      <div class="col-4 p-4 border">
+        <h2>Form Contact</h2>
+        <!--Formulario-->
+        <form  #contactFrom="ngForm">
+            <div class="mb-2">
+                <label for="" class="form-label">Name:</label>
+                <input type="text" class="form-control" name="name" [(ngModel)]="newContact.name " required #name="ngModel"/>
+                <!--Agrega el ngModel para enviar los datos al componete, repetimos en todos los imput-->
+                <div class="alert alert-danger" [hidden]="name.valid || name.pristine"> This field is required</div>
+                <!--Alert de Validaciones valid sirve para que se muestre cuando los requerimiento no se cumplan y 
+                    pristine es cuando el usuario a tocado el input-->
+            </div>
+            <div class="mb-2">
+                <label for="" class="form-label">Surname:</label>
+                <input type="text" class="form-control" name="surname" [(ngModel)]="newContact.surname" required #surname="ngModel"/>
+                <div class="alert alert-danger" [hidden]="surname.valid || surname.pristine">This field is required</div><!--Alert de Validaciones-->
+            <!--Alert de Validaciones valid sirve para que se muestre cuando los requerimiento no se cumplan y 
+                    pristine es cuando el usuario a tocado el input-->
+            </div>
+            <div class="mb-2">
+                <label for="" class="form-label">Phone:</label>
+                <input type="text" class="form-control" name="phone" pattern="[0-9- ]+" name="phone" [(ngModel)]="newContact.phone" required #phone="ngModel"/>
+                <div class="alert alert-danger" [hidden]="phone.valid || phone.pristine">This field is required and number</div><!-- Alert de Validaciones-->
+            <!--Alert de Validaciones valid sirve para que se muestre cuando los requerimiento no se cumplan y 
+                    pristine es cuando el usuario a tocado el input-->
+            </div>
+            <div class="mb-2">
+                <label for="" class="form-label">Email:</label>
+                <input type="text" class="form-control" name="email" [(ngModel)]="newContact.email" required #email="ngModel"/>
+                <div class="alert alert-danger " [hidden]="email.valid || email.pristine">This field is required</div><!--Alert de Validaciones--> 
+            <!--Alert de Validaciones valid sirve para que se muestre cuando los requerimiento no se cumplan y 
+                    pristine es cuando el usuario a tocado el input-->
+            </div>
+        
+            <div class="mb-2 form-check">
+                <label for="" class="form-label">Your are male?</label>
+                <input type="checkbox" class="form-check" name="male" [(ngModel)]="newContact.male"/>
+            </div>
+            <div class="mb-2">
+                <label for="" class="form-label">comment</label>
+                <textarea name="" id="" rows="1" class="form-control" name="comment" [(ngModel)]="newContact.comment"></textarea>
+            </div>
+            <div class="d-grid gap-2 col-4 float-end">
+                <button class="btn btn-info btn.lg" (click)="addContact()" [disabled]="contactFrom.invalid">Send</button>
+            </div>
+        </form>
+        <!--Fin del formulario-->
+      </div>
+  
+      <div class="col-8 p-4 border">
+        <h2>Data Table</h2>
+        <app-table (idUpdate)="getId($event)"></app-table><!--Llamamos el componente de table donde se mostrara los datos-->
+      </div>
+    </div>
+  </div>
+  
+

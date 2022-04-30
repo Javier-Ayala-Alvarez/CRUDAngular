@@ -1,0 +1,48 @@
+<div class="table-responsive">
+  <table class="table ">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Sex</th>
+        <th scope="col">Comment</th>
+        <th scope="col">Option</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of contactArray; let i = index"><!--Agregamos un for para que se ejecute por registros-->
+        <th scope="row">{{ data.id }}</th><!--Iterpolamos para mostrar la data en el campo id-->
+        <td>{{ data.name | titlecase }}</td>
+        <!--Agregamos el pipes para que la primera letra sea mayuscula -->
+        <td>{{ data.surname | titlecase }}</td>
+        <td>{{ data.phone }}</td>
+        <td>{{ data.email }}</td>
+        <td *ngIf="data.male == true; then trueBlock; else falseBlock"></td>
+        <!--If para saber si el boolean viene true-->
+        <ng-template #trueBlock>Masculino</ng-template>
+        <!--Imprime si es true-->
+        <ng-template #falseBlock>Femenino</ng-template>
+        <!--Imprime si es false-->
+        <td>{{ data.comment | titlecase }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteContact(i)"><!--Llamamos la funcio eliminar-->
+            Delete
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-warning" (click)="getPosition(data.id)"><!--Envia el id-->
+            Update
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  
+
+
+  
